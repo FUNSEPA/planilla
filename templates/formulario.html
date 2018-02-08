@@ -1,0 +1,45 @@
+{% block formulario %}
+<form action="{{ accion }}" method="post" enctype="multipart/form-data">
+	{% if subir_archivo %}
+	<div class="custom-file">
+		<input type="file" class="custom-file-input" id="archivo" name="archivo">
+		<label class="custom-file-label" for="archivo">Archivo de planilla...</label>
+	</div>
+	<div class="form-group">
+		<label for="quincena">Quincena</label>
+		<select class="form-control" id="quincena" name="quincena">
+			<option value="1">Primera</option>
+			<option value="2">Segunda</option>
+			<option value="3">Bono 14</option>
+			<option value="4">Aguinaldo</option>
+		</select>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="individual" id="individual1" value="0" checked>
+		<label class="form-check-label" for="individual1">
+			Listado
+		</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="individual" id="individual2" value="1">
+		<label class="form-check-label" for="individual2">
+			Individual
+		</label>
+	</div>
+	<div class="form-check form-check-inline">
+		<input class="form-check-input" type="checkbox" id="enviar" value="1" name="enviar">
+		<label class="form-check-label" for="enviar">Enviar por correo</label>
+	</div>
+
+	{% else %}
+
+	<input type="hidden" name="file_name" id="file_name" value="{{ file_name }}" disabled>
+	<input type="hidden" name="quincena" id="quincena" value="{{ data.quincena }}">
+	<input type="hidden" name="individual" id="individual" value="{{ data.individual }}">
+	<input type="hidden" name="enviar" id="enviar" value="{{ data.enviar }}">
+	{% endif %}
+	
+	<br>
+	<button type="submit" class="btn btn-primary">Generar</button>
+</form>
+{% endblock formulario %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Planillas</title>
+	<style type="text/css">
+	th {
+		text-align: center
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<br>
+		{% if planilla %}
+		<a href="/" class="btn btn-primary">Cancelar</a>
+		<table class="table table-sm">
+			<tr>
+				<th>Código</th>
+				<th>Empleado</th>
+				<th>Correo</th>
+				<th>Cuenta</th>
+			</tr>
+			{% for persona in planilla.lista_empleados %}
+			<tr>
+				<td>{{ persona.codigo}}</td>
+				<td>{{ persona.nombre }}</td>
+				<td>{{ persona.correo }}</td>
+				<td>{{ persona.cuenta }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		<div class="well">
+		{% with accion="send", file_name=file_name %}
+		{% include "formulario.html" %}
+		{% endwith %}
+		{% else %}
+		</div>
+		<div class="row">
+			<div class="col">
+				{% with subir_archivo=True, accion="preview" %}
+				{% include "formulario.html" %}
+				{% endwith %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+
+</body>
+<script src="js/bootstrap.min.js"></script>
+</html>

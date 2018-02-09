@@ -38,15 +38,17 @@ def enviar():
         'quincena': request.form.get('quincena', 1),
         'individual': request.form.get('individual', 0),
         'enviar': request.form.get('enviar', 0),
-        'file_name': request.form.get('enviar', 'planilla.xlsx')
+        'file_name': request.form.get('file_name')
     }
-    comando = 'python main.py --quincena={} --individual={} {}'.format(
+    comando = 'python main.py --quincena={} --individual={} --filename="{}" {}'.format(
         data['quincena'],
         data['individual'],
+        data['file_name'],
         '--enviar' if data['enviar'] == "1" else '')
+    print(comando)
     call([comando], shell=True)
     return render_template("index.html")
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

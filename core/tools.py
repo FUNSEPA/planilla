@@ -16,7 +16,7 @@ class PlanillaParser:
     lista_empleados = []
     quincena = ''
 
-    def __init__(self, data_path='data', file_name='planilla.xlsx', quincena=1):
+    def __init__(self, file_name, data_path='data', quincena=1):
         self.data_path = pathlib.Path(data_path)
         self.file_name = file_name
 

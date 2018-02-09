@@ -26,6 +26,11 @@ parser.add_argument(
     "--preview",
     action='store_true',
     help="Vista previa de los datos")
+parser.add_argument(
+    "--filename",
+    type=str,
+    default='planilla.xlsx',
+    help="Archivo a enviar")
 
 args = parser.parse_args()
 
@@ -51,7 +56,7 @@ template_name = 'template_{}_{}.html'.format(template_quincena, template_tipo)
 enviar = True if args.enviar else False
 planilla = tools.PlanillaParser(
     quincena=args.quincena,
-    file_name=data_name)
+    file_name=args.filename)
 
 if not args.preview:
     if args.individual == 0:

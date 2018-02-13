@@ -32,7 +32,7 @@ class Empleado(object):
         self.nombre = datos[1].value
         self.codigo = datos[0].value
         self.correo = datos[2].value
-        self.cuenta = datos[4].value
+        self.cuenta = datos[5].value
         self.primera = float(datos[6].value)
         self.decreto = float(datos[7].value)
         self.descuentos = float(datos[9].value)
